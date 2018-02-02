@@ -1,5 +1,13 @@
 package sorting_algorithms;
 
+
+/**
+ * 创建时间：2018-02-02
+ *
+ * 归并排序
+ *
+ * @author long
+ */
 public class MergeSort implements MySort {
 
     @Override
