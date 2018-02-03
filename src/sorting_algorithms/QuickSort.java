@@ -48,7 +48,10 @@ public class QuickSort implements MySort {
             return;
         }
         int m = partition(nums, p, q);
-        quickSort(nums, p, m-1);
+        if ( m == -1 ) {
+            return;
+        }
+        quickSort(nums, p, m - 1);
         quickSort(nums, m+1, q);
     }
 
@@ -56,13 +59,23 @@ public class QuickSort implements MySort {
         randomExchange(nums, p, q);
         int axle = nums[q];
         int j = p - 1;
+        int equals_count = 1;
         for (int i = p; i < q; i++) {
-            if (nums[i] <= axle) {
+            if (nums[i] < axle) {
                 j++;
                 int tmp = nums[j];
                 nums[j] = nums[i];
                 nums[i] = tmp;
+            } else if ( nums[i] == axle ) {
+                j++;
+                int tmp = nums[j];
+                nums[j] = nums[i];
+                nums[i] = tmp;
+                equals_count++;
             }
+        }
+        if ( equals_count == nums.length ) { // 防止所有元素都相等时还进行递归
+            return -1;
         }
         j++;
         int tmp = nums[j];

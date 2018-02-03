@@ -53,7 +53,7 @@ public class MergeSort implements MySort {
         for ( int i = begin; i < end; i++ ) {
             if ( idx1 >= a.length ) {
                 nums[i] = b[idx2++];
-            } else if ( idx2 >= b.length || a[idx1] < b[idx2] ) {
+            } else if ( idx2 >= b.length || a[idx1] <= b[idx2] ) {
                 nums[i] = a[idx1++];
             } else {
                 nums[i] = b[idx2++];

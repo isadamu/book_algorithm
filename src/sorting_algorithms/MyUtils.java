@@ -20,4 +20,13 @@ public class MyUtils {
         }
         return array;
     }
+
+    public static int[] generateRandomArray(Random rand, int length, int bound) {
+        int[] array = new int[length];
+        for ( int i = 0; i < length; i++ ) {
+            int tmp = rand.nextInt(bound);
+            array[i] = tmp;
+        }
+        return array;
+    }
 }

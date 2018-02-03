@@ -1,14 +1,13 @@
 package sorting_algorithms;
 
-
 /**
- * 创建时间：2018-02-02
+ * 创建时间：2018-02-03
  *
- * 冒泡排序
+ * 希尔排序
  *
  * @author long
  */
-public class BubbleSort implements MySort {
+public class ShellSort implements MySort {
 
     @Override
     public void sort(int[] nums) {
@@ -36,19 +35,24 @@ public class BubbleSort implements MySort {
         }
         begin = begin < 0 ? 0 : begin;
         end = end > nums.length ? nums.length : end;
-        boolean change = false;
-        for ( int i = begin; i < end; i++ ) {
-            for ( int j = end - 1; j > i; j-- ) {
-                if ( nums[j] < nums[j-1] ) {
-                    int tmp = nums[j-1];
-                    nums[j-1] = nums[j];
-                    nums[j] = tmp;
-                    change = true;
+
+        // 使用序列 A102549 地址：https://oeis.org/A102549
+        int[] gaps = {1, 4, 10, 23, 57, 132, 301, 701, 1750};
+        int idx = gaps.length - 1;
+        while ( idx >= 0 ) {
+            int start = gaps[idx] + begin;
+            for ( int i = start; i < end; i++ ) {
+                for ( int j = i; j >= start; j -= gaps[idx] ) {
+                    int front = j - gaps[idx];
+                    if ( nums[j] >= nums[front] ) {
+                        break;
+                    }
+                    int tmp = nums[j];
+                    nums[j] = nums[front];
+                    nums[front] = tmp;
                 }
             }
-            if ( !change ) {
-                break;
-            }
+            idx--;
         }
     }
 }
