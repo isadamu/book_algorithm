@@ -36,8 +36,9 @@ public class BubbleSort implements MySort {
         }
         begin = begin < 0 ? 0 : begin;
         end = end > nums.length ? nums.length : end;
-        boolean change = false;
+        boolean change;
         for ( int i = begin; i < end; i++ ) {
+            change = false;
             for ( int j = end - 1; j > i; j-- ) {
                 if ( nums[j] < nums[j-1] ) {
                     int tmp = nums[j-1];
