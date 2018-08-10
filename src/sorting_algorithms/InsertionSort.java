@@ -36,7 +36,7 @@ public class InsertionSort implements MySort {
         begin = begin < 0 ? 0 : begin;
         end = end > nums.length ? nums.length : end;
         for ( int i = begin + 1; i < end; i++ ) {
-            for ( int j = i - 1; j >= 0; j-- ) {
+            for ( int j = i - 1; j >= begin; j-- ) {
                 if ( nums[j] <= nums[j+1] ) {
                     break;
                 }
